@@ -1,0 +1,28 @@
+.formHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85px;
+  background: navy;
+}
+
+.inputField {
+  width: 320px;
+  height: 32px;
+  border-radius: 4px;
+  text-align: center;
+  border: 1px solid black;
+  outline: none;
+}
+
+.inputField:focus {
+  border: 1px solid blue;
+}
+
+.btn {
+  width: 75px;
+  height: 34px;
+  background-color: lightgray;
+  border-radius: 4px;
+  outline: none;
+}
