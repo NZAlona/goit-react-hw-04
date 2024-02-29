@@ -1,0 +1,12 @@
+.errorWrapper {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: red;
+  display: block;
+  width: 350px;
+  height: 120px;
+  margin: 0 auto;
+  margin-top: 20px;
+  text-align: center;
+}

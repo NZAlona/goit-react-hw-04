@@ -2,10 +2,14 @@ import { Formik, Form, Field } from 'formik';
 import css from './SearchBar.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function SearchBar() {
+export default function SearchBar({ onSubmit }) {
   const handleSubmit = (values, actions) => {
-    console.log(values);
-    toast.error('An empty input. Please fill it up');
+    if (values.searchBox === '') {
+      toast.error('You attempted to submit an empty request');
+      return;
+    }
+    onSubmit(values.searchBox);
+
     actions.resetForm();
   };
   return (
