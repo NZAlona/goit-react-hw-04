@@ -3,15 +3,23 @@ import css from './ImageCard.module.css';
 export default function ImageCard({
   value: {
     description,
-    urls: { small },
+    urls: { small, regular },
   },
+  onClick,
 }) {
+  const modalPicture = {
+    url: regular,
+    alt: description,
+  };
   return (
     <>
       <div>
-        <a href={small} target="_blank" rel="noreferrer noopener">
-          <img src={small} alt={description} className={css.photo} />
-        </a>
+        <img
+          src={small}
+          alt={description}
+          className={css.photo}
+          onClick={() => onClick(modalPicture)}
+        />
       </div>
     </>
   );

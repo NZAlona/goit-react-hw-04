@@ -1,6 +1,7 @@
 import { Formik, Form, Field } from 'formik';
 import css from './SearchBar.module.css';
 import toast, { Toaster } from 'react-hot-toast';
+import { FaMagnifyingGlass } from 'react-icons/fa6';
 
 export default function SearchBar({ onSubmit }) {
   const handleSubmit = (values, actions) => {
@@ -16,7 +17,7 @@ export default function SearchBar({ onSubmit }) {
     <>
       <header className={css.formHeader}>
         <Formik initialValues={{ searchBox: '' }} onSubmit={handleSubmit}>
-          <Form>
+          <Form className={css.searchForm}>
             <Field
               type="text"
               name="searchBox"
@@ -25,8 +26,8 @@ export default function SearchBar({ onSubmit }) {
               placeholder="Search images and photos"
               className={css.inputField}
             ></Field>
-            <button type="submit" className={css.btn}>
-              Search
+            <button type="submit" className={css.icon}>
+              <FaMagnifyingGlass />
             </button>
             <Toaster />
           </Form>

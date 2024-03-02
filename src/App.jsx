@@ -6,6 +6,7 @@ import { fetchPictures } from './pictures-api';
 import Loader from './components/Loader/Loader';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
+import ImageModal from './components/ImageModal/ImageModal';
 
 export default function App() {
   const [pictures, setPictures] = useState([]);
@@ -15,6 +16,8 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [total_pages, setTotalPages] = useState(0);
+  const [modal, setModal] = useState(false);
+  const [modalContent, setModalContent] = useState();
 
   useEffect(() => {
     if (query === '') {
@@ -53,13 +56,27 @@ export default function App() {
   const handleLoadMore = () => {
     setPage(page + 1);
   };
+
+  // Modal
+
+  const handleOpenModal = modalObj => {
+    setModalContent(modalObj);
+    setModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setModal(false);
+  };
+
   return (
     <>
       <SearchBar onSubmit={handleSearch} />
       {error && <ErrorMessage />}
-      {pictures.length > 0 && <ImageGallery items={pictures} />}
+      {pictures.length > 0 && <ImageGallery items={pictures} onClickCard={handleOpenModal} />}
       {loading && <Loader />}
       {pictures.length > 0 && !loading && !showBtn && <LoadMoreBtn onClick={handleLoadMore} />}
+
+      <ImageModal content={modalContent} isOpen={modal} onModalClose={handleCloseModal} />
     </>
   );
 }

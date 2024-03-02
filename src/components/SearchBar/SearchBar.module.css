@@ -19,10 +19,16 @@
   border: 1px solid blue;
 }
 
-.btn {
-  width: 75px;
-  height: 34px;
-  background-color: lightgray;
-  border-radius: 4px;
-  outline: none;
+.searchForm {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  padding: 3px 3px;
+  left: 8px;
+  top: 5px;
+  cursor: pointer;
 }
