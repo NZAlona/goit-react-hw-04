@@ -15,7 +15,6 @@ export default function App() {
   const [showBtn, setShowBtn] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [total_pages, setTotalPages] = useState(0);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState();
 
@@ -30,9 +29,7 @@ export default function App() {
         setError(false);
         const data = await fetchPictures(query, page);
 
-        setTotalPages(data.total_pages);
-
-        setShowBtn(total_pages && total_pages === page);
+        setShowBtn(data.total_pages > page);
 
         setPictures(prevPictures => {
           return [...prevPictures, ...data.results];
@@ -54,7 +51,10 @@ export default function App() {
   };
 
   const handleLoadMore = () => {
-    setPage(page + 1);
+    // setPage(page+1);
+    setPage(() => {
+      return page + 1;
+    });
   };
 
   // Modal
@@ -74,7 +74,7 @@ export default function App() {
       {error && <ErrorMessage />}
       {pictures.length > 0 && <ImageGallery items={pictures} onClickCard={handleOpenModal} />}
       {loading && <Loader />}
-      {pictures.length > 0 && !loading && !showBtn && <LoadMoreBtn onClick={handleLoadMore} />}
+      {pictures.length > 0 && !loading && showBtn && <LoadMoreBtn onClick={handleLoadMore} />}
 
       <ImageModal content={modalContent} isOpen={modal} onModalClose={handleCloseModal} />
     </>
