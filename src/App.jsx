@@ -52,9 +52,7 @@ export default function App() {
 
   const handleLoadMore = () => {
     // setPage(page+1);
-    setPage(() => {
-      return page + 1;
-    });
+    setPage(prevPage => prevPage + 1);
   };
 
   // Modal
